@@ -3,7 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase'
 import { isAdminRequest, withRetry } from '@/lib/utils'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || 'placeholder' })
 
 export async function POST(
   request: NextRequest,
