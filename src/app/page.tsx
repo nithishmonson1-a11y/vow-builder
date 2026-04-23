@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 const USER_A_TOKEN = process.env.USER_A_TOKEN!
 const USER_B_TOKEN = process.env.USER_B_TOKEN!
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN!
