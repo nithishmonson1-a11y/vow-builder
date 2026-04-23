@@ -20,7 +20,7 @@ import {
 } from './prompts'
 import { withRetry, getPartner } from './utils'
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || 'placeholder' })
 
 async function callClaude(userPrompt: string, temperature: number): Promise<string> {
   // Use beta messages API with prompt-caching header to cache the stable system prompt

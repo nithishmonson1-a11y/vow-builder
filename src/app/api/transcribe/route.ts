@@ -3,7 +3,7 @@ import OpenAI from 'openai'
 import { resolveUserFromRequest } from '@/lib/utils'
 import { withRetry } from '@/lib/utils'
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || 'placeholder' })
 
 export async function POST(request: NextRequest) {
   const userId = resolveUserFromRequest(request)
