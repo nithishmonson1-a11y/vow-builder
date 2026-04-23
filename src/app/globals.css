@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #faf7f2;
+    --foreground: #1a1410;
+  }
+
+  html {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans;
+    min-height: 100dvh;
+  }
+
+  /* Prevent iOS bounce scroll on main content */
+  #__next, main {
+    overscroll-behavior: none;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-ink text-cream px-6 py-3 font-sans text-sm tracking-wide
+           transition-opacity hover:opacity-80 active:opacity-70
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply text-ink-light border border-cream-mid px-6 py-3 font-sans text-sm
+           tracking-wide transition-all hover:border-ink-light
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .question-text {
+    @apply font-display text-2xl md:text-3xl leading-relaxed text-ink;
+  }
+
+  .phase-label {
+    @apply font-sans text-xs tracking-widest uppercase text-gold;
+  }
+
+  .card {
+    @apply bg-cream-dark border border-cream-mid p-6;
+  }
+}
