@@ -5,7 +5,7 @@ export type PhaseName =
   | 'thursday_foundation'
   | 'friday_mirror'
   | 'saturday_bridge'
-  | 'sunday_synthesis'
+  | 'sunday_bridge_2'
   | 'sunday_reveal'
   | 'complete'
 
@@ -14,7 +14,7 @@ export const PHASE_ORDER: PhaseName[] = [
   'thursday_foundation',
   'friday_mirror',
   'saturday_bridge',
-  'sunday_synthesis',
+  'sunday_bridge_2',
   'sunday_reveal',
   'complete',
 ]
@@ -24,7 +24,7 @@ export const PHASE_LABELS: Record<PhaseName, string> = {
   thursday_foundation: 'Thursday — Foundation',
   friday_mirror: 'Friday — Mirror',
   saturday_bridge: 'Saturday — Bridge',
-  sunday_synthesis: 'Sunday Morning — Synthesis',
+  sunday_bridge_2: 'Sunday Morning — Bridge',
   sunday_reveal: 'Sunday Evening — Reveal',
   complete: 'Complete',
 }
@@ -33,7 +33,7 @@ export const PHASE_QUESTION_COUNTS: Partial<Record<PhaseName, number>> = {
   thursday_foundation: 3,
   friday_mirror: 3,
   saturday_bridge: 3,
-  sunday_synthesis: 2,
+  sunday_bridge_2: 3,
 }
 
 export interface Couple {

@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Already at final phase' }, { status: 400 })
   }
 
-  // For sunday_synthesis → sunday_reveal, use /admin/trigger-reveal
-  if (phase === 'sunday_synthesis') {
+  // For sunday_bridge_2 → sunday_reveal, use /admin/trigger-reveal
+  if (phase === 'sunday_bridge_2') {
     return NextResponse.json(
-      { error: 'Use /admin/trigger-reveal to advance from sunday_synthesis' },
+      { error: 'Use /admin/trigger-reveal to advance from sunday_bridge_2' },
       { status: 400 },
     )
   }

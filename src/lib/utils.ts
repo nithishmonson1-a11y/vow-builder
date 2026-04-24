@@ -60,7 +60,7 @@ export function formatPhaseLabel(phase: string): string {
     thursday_foundation: 'Thursday — Foundation',
     friday_mirror: 'Friday — Mirror',
     saturday_bridge: 'Saturday — Bridge',
-    sunday_synthesis: 'Sunday Morning — Synthesis',
+    sunday_bridge_2: 'Sunday Morning — Bridge',
     sunday_reveal: 'Sunday Evening — Reveal',
     complete: 'Complete',
   }

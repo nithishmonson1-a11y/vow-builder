@@ -17,28 +17,28 @@ export async function POST(request: NextRequest) {
 
   if (!couple) return NextResponse.json({ error: 'No couple found' }, { status: 404 })
 
-  if (couple.current_phase !== 'sunday_synthesis') {
+  if (couple.current_phase !== 'sunday_bridge_2') {
     return NextResponse.json(
-      { error: 'Can only trigger reveal from sunday_synthesis phase', current: couple.current_phase },
+      { error: 'Can only trigger reveal from sunday_bridge_2 phase', current: couple.current_phase },
       { status: 400 },
     )
   }
 
-  // Verify both users have answered Sunday synthesis questions
-  const expectedCount = PHASE_QUESTION_COUNTS['sunday_synthesis'] ?? 2
+  // Verify both users have answered Sunday bridge 2 questions
+  const expectedCount = PHASE_QUESTION_COUNTS['sunday_bridge_2'] ?? 3
   const [{ data: answersA }, { data: answersB }] = await Promise.all([
     supabaseAdmin
       .from('answers')
       .select('id')
       .eq('couple_id', couple.id)
       .eq('user_id', 'a')
-      .eq('phase', 'sunday_synthesis'),
+      .eq('phase', 'sunday_bridge_2'),
     supabaseAdmin
       .from('answers')
       .select('id')
       .eq('couple_id', couple.id)
       .eq('user_id', 'b')
-      .eq('phase', 'sunday_synthesis'),
+      .eq('phase', 'sunday_bridge_2'),
   ])
 
   const countA = answersA?.length || 0
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
   if (countA < expectedCount || countB < expectedCount) {
     return NextResponse.json(
       {
-        error: 'Not all Sunday synthesis answers submitted',
+        error: 'Not all Sunday bridge 2 answers submitted',
         details: { a: `${countA}/${expectedCount}`, b: `${countB}/${expectedCount}` },
       },
       { status: 400 },

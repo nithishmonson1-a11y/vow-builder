@@ -36,7 +36,7 @@ const PHASE_DESCRIPTIONS: Record<string, string> = {
   thursday_foundation: 'Start here. These questions are the same for both of you.',
   friday_mirror: 'These questions were written just for you, based on what you wrote last night.',
   saturday_bridge: 'These questions are informed by the full picture of the week so far.',
-  sunday_synthesis: 'You\'re ready to start finding your words. Almost there.',
+  sunday_bridge_2: 'One more round. These questions were written for you, informed by everything written this week.',
 }
 
 export function TodayScreen({ userToken, userId, userName }: TodayScreenProps) {

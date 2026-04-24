@@ -14,7 +14,7 @@ import {
   FALLBACKS,
   buildFridayMirrorPrompt,
   buildSaturdayBridgePrompt,
-  buildSundaySynthesisPrompt,
+  buildSundayBridge2Prompt,
   buildSundayReadingPrompt,
   buildSundayDraftPrompt,
 } from './prompts'
@@ -138,13 +138,21 @@ async function generateQuestions(
           getAnswersForUser(coupleId, partnerId, ['thursday_foundation', 'friday_mirror']),
         ])
         prompt = buildSaturdayBridgePrompt(userId, userAnswers, partnerAnswers)
-      } else if (phase === 'sunday_synthesis') {
-        const answers = await getAnswersForUser(coupleId, userId, [
-          'thursday_foundation',
-          'friday_mirror',
-          'saturday_bridge',
+      } else if (phase === 'sunday_bridge_2') {
+        const partnerId = getPartner(userId)
+        const [userAnswers, partnerAnswers] = await Promise.all([
+          getAnswersForUser(coupleId, userId, [
+            'thursday_foundation',
+            'friday_mirror',
+            'saturday_bridge',
+          ]),
+          getAnswersForUser(coupleId, partnerId, [
+            'thursday_foundation',
+            'friday_mirror',
+            'saturday_bridge',
+          ]),
         ])
-        prompt = buildSundaySynthesisPrompt(answers)
+        prompt = buildSundayBridge2Prompt(userId, userAnswers, partnerAnswers)
       } else {
         throw new Error(`No question generator for phase: ${phase}`)
       }

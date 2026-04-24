@@ -75,21 +75,38 @@ Return JSON:
 ]}`
 }
 
-export function buildSundaySynthesisPrompt(userAnswers: Answer[]): string {
-  return `This person has been writing for three days now toward their wedding vows. Today they will start to articulate what they want to actually say.
+export function buildSundayBridge2Prompt(
+  userId: UserId,
+  userAnswers: Answer[],
+  partnerAnswers: Answer[],
+): string {
+  const personLabel = userId === 'a' ? 'A' : 'B'
+  const partnerLabel = userId === 'a' ? 'B' : 'A'
 
-Generate two questions for them. The questions should:
-- Move from material gathering toward articulation
-- Help them find the line they most want to land
-- Surface what they have not yet found words for
+  return `Two people, A and B, are preparing to marry. This is the final round of questions before they write their vows tonight. You have been reading both of their private answers across four days.
 
-Their previous answers across the week:
+Your job is to generate three questions for [Person ${personLabel}] that are *secretly informed by* what [Person ${partnerLabel}] has been writing — without revealing what ${partnerLabel} wrote.
+
+By now, both have been circling themes for days. Look for:
+- Threads in ${partnerLabel}'s writing that ${personLabel} has been orbiting but not quite reaching
+- Things ${partnerLabel} has finally named that ${personLabel} still hasn't
+- Places where their writing almost touches but hasn't landed in the same place yet
+
+Generate three questions for ${personLabel}. The questions should feel like natural, important questions on their own. The invisible work is pushing ${personLabel} toward where ${partnerLabel} already is — so tonight, when they both write, they land near each other.
+
+Do not name ${partnerLabel}'s themes. Do not quote ${partnerLabel}. If ${partnerLabel} has shared something vulnerable, do not use it as material.
+
+[Person ${personLabel}]'s previous answers:
 ${formatAnswers(userAnswers)}
+
+[Person ${partnerLabel}]'s previous answers:
+${formatAnswers(partnerAnswers)}
 
 Return JSON:
 { "questions": [
   { "number": 1, "text": "..." },
-  { "number": 2, "text": "..." }
+  { "number": 2, "text": "..." },
+  { "number": 3, "text": "..." }
 ]}`
 }
 
@@ -166,10 +183,11 @@ export const FALLBACKS = {
       { number: 3, text: "What's the version of this marriage you want to fight for?" },
     ],
   },
-  sunday_synthesis: {
+  sunday_bridge_2: {
     questions: [
-      { number: 1, text: "What's the line you most want to land?" },
-      { number: 2, text: "What do you not yet know how to say?" },
+      { number: 1, text: "What's something you've been feeling about your partner this week that you haven't written down yet?" },
+      { number: 2, text: "What's the version of them you most want to acknowledge in your vows?" },
+      { number: 3, text: "What do you want them to know you already know?" },
     ],
   },
   reading: {

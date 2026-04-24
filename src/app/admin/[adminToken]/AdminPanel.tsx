@@ -28,7 +28,7 @@ const PHASE_NEXT_LABEL: Record<string, string> = {
   thursday_foundation: 'Advance to Friday',
   friday_mirror: 'Advance to Saturday',
   saturday_bridge: 'Advance to Sunday morning',
-  sunday_synthesis: 'Trigger Sunday reveal',
+  sunday_bridge_2: 'Trigger Sunday reveal',
 }
 
 export function AdminPanel({ adminToken }: AdminPanelProps) {
@@ -108,7 +108,7 @@ export function AdminPanel({ adminToken }: AdminPanelProps) {
   const primaryAction = () => {
     if (!phase) return seed()
     if (phase === 'not_started') return start()
-    if (phase === 'sunday_synthesis') return triggerReveal()
+    if (phase === 'sunday_bridge_2') return triggerReveal()
     if (phase === 'sunday_reveal' || phase === 'complete') return
     return advance()
   }
